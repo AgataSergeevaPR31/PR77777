@@ -1,0 +1,285 @@
+﻿<Window x:Class="PR77777.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PR77777"
+        mc:Ignorable="d"
+        Title="Доктор-Пациент" Height="700" Width="1200">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10" Background="#22ddd6">
+                <StackPanel Margin="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Имя:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Text="{Binding CurrentDoctor.Name}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Фамилия:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Text="{Binding CurrentDoctor.LastName}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Отчество:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Text="{Binding CurrentDoctor.MiddleName}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Специализация:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Text="{Binding CurrentDoctor.Specialisation}" Grid.Row="3" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Пароль:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Text="{Binding CurrentDoctor.Password}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Подтвердите пароль:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Name="PassPodt" Grid.Row="5" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+                    </Grid>
+
+                    <Button Margin="0,10,0,0" Content="Зарегистрироваться" Click="Register_Click" 
+                            Height="{Binding CurrentDoctor.Name}" FontSize="12" Background="#FFDDDDDD"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10" Background="#f4a71a">
+                <StackPanel Margin="15">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="ID пользователя:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Name="InputID" Text="{Binding CurrentDoctor.Id}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+
+                        <TextBlock Text="Пароль:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                        <TextBox Name="InputPassword" Text="{Binding CurrentDoctor.Password}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Height="25"/>
+                    </Grid>
+
+                    <Button Content="Войти" Click="SignIn_Click" Height="30" Margin="0,10,0,0" 
+                            FontSize="12" Background="#FFDDDDDD"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Height="149" Background="#9856d2">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Доктор" Margin="0,0,0,10" 
+                               TextWrapping="Wrap" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="ФИО:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentDoctor.FullName}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+
+                        <TextBlock Text="Специальность:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentDoctor.Specialisation}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+
+                        <TextBlock Text="ID:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentDoctor.Id}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5,0,10,0">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10" Background="#d256ba">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Поиск пациента" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" FontWeight="Bold"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Name="Search" Text="{Binding CurrentPatient.Id}" Margin="0,0,10,0" Height="25"/>
+                        <Button Click="Search_Click" Grid.Column="1" Content="Найти" Height="25" Width="80"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Height="459" Background="#9ad256">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Форма приема пациента" Margin="0,0,0,15" 
+                               HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="ФИО врача:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentDoctor.FullName}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="ID врача:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentDoctor.Id}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="ФИО пациента:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentPatient.FullName}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="ID пациента:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.Id}" Grid.Row="3" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Дата рождения:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentPatient.Birthday, StringFormat=dd.MM.yyyy}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="Дата посещения:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <DatePicker SelectedDate="{Binding CurrentPatient.LastAppointment}" Grid.Row="5" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Диагноз:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.Diagnosis}" Grid.Row="6" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Рекомендации:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.Recomendations}" Grid.Row="7" Grid.Column="1" Margin="0,0,0,8" Height="60" 
+                                 TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                        <Button Click="Write_Click" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Записать прием" 
+                                Height="35" Margin="0,15,0,0" FontSize="12" Background="#FFDDDDDD"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="2" Margin="5,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10" Grid.Row="0" Background="#5698d2">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Добавление пациента" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Имя:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.Name}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Фамилия:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.LastName}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Отчество:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding CurrentPatient.MiddleName}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Дата рождения:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <DatePicker SelectedDate="{Binding CurrentPatient.Birthday}" Grid.Row="3" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <Button Click="AddPatient_Click" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить пациента" 
+                                Height="35" Margin="0,15,0,0" FontSize="12" Background="#FFDDDDDD"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,298,0,44" Grid.RowSpan="2" Background="#e5d834">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Редактирование пациента" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Имя:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Name="Name" Text="{Binding CurrentPatient.Name}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Фамилия:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Name="LastName" Text="{Binding CurrentPatient.LastName}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Отчество:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <TextBox Name="MiddleName" Text="{Binding CurrentPatient.MiddleName}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <TextBlock Text="Дата рождения:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,8" FontWeight="SemiBold"/>
+                        <DatePicker Name="Birthday" SelectedDate="{Binding CurrentPatient.Birthday}" Grid.Row="3" Grid.Column="1" Margin="0,0,0,8" Height="25"/>
+
+                        <Button Click="Edit_Click" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Сохранить изменения" 
+                                Height="35" Margin="0,15,0,0" FontSize="12" Background="#FFDDDDDD"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Background="LightGray"  BorderBrush="Black" BorderThickness="1"  Margin="0,10,0,0">
+            <Grid Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Доктора:" Grid.Column="1" FontWeight="Bold"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label Name="DocCount" Content="0" Grid.Column="2" MinWidth="40"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <Label Content="Пациенты:" Grid.Column="3" FontWeight="Bold"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <Label Name="PatientCount" Content="0" Grid.Column="4" MinWidth="40" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
