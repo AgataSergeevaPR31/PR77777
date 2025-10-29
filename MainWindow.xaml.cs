@@ -14,7 +14,7 @@ namespace PR77777
         {
             InitializeComponent();
             DataContext = this;
-            ObnovCount();
+            CountDifUsers();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -22,7 +22,7 @@ namespace PR77777
             CurrentDoctor.Id = CurrentDoctor.DoctorID();
             CurrentDoctor.SaveToFile();
             MessageBox.Show($"Врач ID: {CurrentDoctor.Id}");
-            ObnovCount();
+            CountDifUsers();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace PR77777
                 CurrentPatient.Recomendations = patient.Recomendations;
                 MessageBox.Show($"Пациент {CurrentPatient.FullName} найден");
             }
-            ObnovCount();
+            CountDifUsers();
         }
 
         private void AddPatient_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace PR77777
             CurrentPatient.Id = CurrentPatient.PatientID();
             CurrentPatient.SaveToFile();
             MessageBox.Show($"Пациент ID: {CurrentPatient.Id}");
-            ObnovCount();
+            CountDifUsers();
         }
 
         private void Write_Click(object sender, RoutedEventArgs e)
@@ -58,10 +58,11 @@ namespace PR77777
             CurrentPatient.LastDoctor = CurrentDoctor.Id;
             CurrentPatient.LastAppointment = DateTime.Now;
             CurrentPatient.SaveToFile();
-            ObnovCount();
+            MessageBox.Show("Данные о приёме записаны!");
+            CountDifUsers();
         }
 
-        private void ObnovCount()
+        private void CountDifUsers()
         {
             DocCount.Content = Directory.GetFiles(Directory.GetCurrentDirectory())
                 .Count(file => Path.GetFileName(file).StartsWith("D_"));
@@ -74,7 +75,7 @@ namespace PR77777
         {
             CurrentPatient.SaveToFile();
             MessageBox.Show("Информация о пациенте обновлена");
-            ObnovCount();
+            CountDifUsers();
         }
 
         private void SignIn_Click(object sender, RoutedEventArgs e)
@@ -91,7 +92,7 @@ namespace PR77777
                 CurrentDoctor.Password = load.Password;
                 MessageBox.Show($"Здравствуйте, {CurrentDoctor.FullName}");
             }
-            ObnovCount();
+            CountDifUsers();
         }
     }
 }
